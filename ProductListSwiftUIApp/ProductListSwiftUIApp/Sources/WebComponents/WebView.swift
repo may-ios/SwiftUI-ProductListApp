@@ -27,6 +27,10 @@ struct WebView: UIViewRepresentable {
         return webView
     }
     
+    ///SwiftUI 뷰의 상태가 변경될 때 호출
     func updateUIView(_ uiView: WKWebView, context: Context) {
+        if uiView.url != url {
+            coordinator.loadURL(url)
+        }
     }
 }
