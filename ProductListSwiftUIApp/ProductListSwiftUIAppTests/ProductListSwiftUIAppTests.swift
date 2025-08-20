@@ -76,4 +76,54 @@ final class ProductListSwiftUIAppTests: XCTestCase {
         // Then - 초기 상태값들이 올바르게 설정되었는지 검증
         XCTAssertEqual(viewModel.products.count, 0, "초기 상품 목록은 비어있어야 함")
     }
+    
+    // MARK: Product hasDiscount 계산 속성 테스트
+    // hasDiscount 값 검증
+    func testProductHasDiscount() throws {
+        // Given - 할인 있는 상품
+        
+        let discountedProduct = Product(
+            name: "할인상품",
+            brand: "할인브랜드",
+            price: 10000,
+            discountPrice: 3000,
+            discountRate: 70,
+            image: URL(string: "https://example.com/image.jpg")!,
+            link: URL(string: "https://example.com/link")!,
+            tags: [],
+            benefits: [],
+            rating: 0,
+            reviewCount: 0
+        )
+        
+        // Given - 할인 없는 상품
+        let normalProduct = Product(
+            name: "일반상품",
+            brand: "일반브랜드",
+            price: 10000,
+            discountPrice: 10000,
+            discountRate: 0,
+            image: URL(string: "https://example.com/image.jpg")!,
+            link: URL(string: "https://example.com/link")!,
+            tags: [],
+            benefits: [],
+            rating: 0,
+            reviewCount: 0
+        )
+        
+        // Then - hasDiscount 계산 속성 검증
+        XCTAssertTrue(discountedProduct.hasDiscount, "할인율이 0보다 크면 hasDiscount는 true여야 함")
+        XCTAssertFalse(normalProduct.hasDiscount, "할인율이 0이면 hasDiscount는 false여야 함")
+    }
+
+    // MARK: WebProcessPool 싱글톤 테스트
+    // 공유 풀 싱글톤인지 테스트
+    func testWebProcessPoolSingleton() throws {
+        // Given - WebProcessPool 인스턴스 생성
+        let pool1 = WebProcessPool.shared
+        let pool2 = WebProcessPool.shared
+        
+        // Then - 같은 인스턴스여야 함
+        XCTAssertTrue(pool1 === pool2, "WebProcessPool.shared는 싱글톤이어야 함")
+    }
 }
