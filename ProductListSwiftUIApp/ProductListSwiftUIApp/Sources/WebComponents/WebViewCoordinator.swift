@@ -42,17 +42,22 @@ class WebViewCoordinator: NSObject, ObservableObject {
 }
 
 // MARK: - WKNavigationDelegate
+///webView 네비게이션 델리게이트 - 프로그레스 바 상태는 progressObservation에서 업데이트
 extension WebViewCoordinator: WKNavigationDelegate {
+    /// 웹페이지 로딩 시작
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
     }
     
+    /// 웹페이지 로딩 완료
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     }
     
+    /// 웹페이지 네비게이션 중 오류 발생
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         print("Failed to load: \(error.localizedDescription)")
     }
     
+    /// 웹페이지 로딩 초기 단계 실패 - 에러 로깅
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         print("Failed to load: \(error.localizedDescription)")
     }
