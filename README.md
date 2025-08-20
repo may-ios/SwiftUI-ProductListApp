@@ -3,7 +3,8 @@
 ## 개요
 
 상품 리스트와 상세 화면을 표시하는 iOS 애플리케이션입니다.
-**SwiftUI + Combine + MVVM** 구조로 구성되었으며 JSON 파일로 상품 리스트, `WKWebView`로 상품 상세 URL 구현한 점은 **`ProductListApp`** 과 동일합니다.
+
+**SwiftUI + Combine + MVVM** 구조로 구성되었으며 JSON 파일로 상품 리스트, 상세 URL로 `WKWebView`를 구현한 점은 **`ProductListApp`** 과 동일합니다.
 **`ProductListApp`**(UIKit + MVVM) 앱과 같은 기능이지만, SwiftUI + Combine를 활용하여 보다 가볍고 직관적으로 작성했습니다. 과제 요구사항에 맞춘 적절한 볼륨으로 간결하면서도 핵심 기능에 집중했습니다.
 
 ---
