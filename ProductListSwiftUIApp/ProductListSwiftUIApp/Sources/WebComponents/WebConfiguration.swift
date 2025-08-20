@@ -8,7 +8,7 @@
 import WebKit
 
 // MARK: - WebConfiguration
-// WKWebViewConfiguration을 래핑하는 설정 클래스
+/// WKWebViewConfiguration을 래핑하는 설정 클래스
 final class WebConfiguration: ObservableObject {
     let configuration: WKWebViewConfiguration
     
