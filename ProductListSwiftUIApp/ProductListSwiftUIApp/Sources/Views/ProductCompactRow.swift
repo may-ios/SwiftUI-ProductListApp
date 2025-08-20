@@ -24,6 +24,7 @@ struct ProductCompactRow : View {
     var body: some View {
         ZStack(alignment: .leading) {
             NavigationLink { // 투명한 네비게이션 링크 (전체 영역 터치 가능)
+                ProductDetailView(product: product)
             } label: {
                 EmptyView()
             }.opacity(0)
