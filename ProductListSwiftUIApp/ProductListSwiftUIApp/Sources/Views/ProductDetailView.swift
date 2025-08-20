@@ -15,8 +15,8 @@ struct ProductDetailView : View {
 
     var body: some View {
         VStack {
-            
         }
         .navigationTitle(product.name) // 상품명을 네비게이션 타이틀로 설정
+        .toolbarRole(.editor) //텍스트 없이 백버튼만 표시
     }
 }
