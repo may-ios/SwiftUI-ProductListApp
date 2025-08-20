@@ -9,10 +9,19 @@ import SwiftUI
 
 // MARK: - ProductListView
 struct ProductListView: View {
+
     var body: some View {
         NavigationView {
+            VStack {
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Image("logo_cj_enm") 
+                }
+            }
         }
     }
+   
 }
 
 #Preview {
