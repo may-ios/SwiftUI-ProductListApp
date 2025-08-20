@@ -6,77 +6,35 @@
 //
 
 import SwiftUI
+import Combine
 
 // MARK: - ProductListView
+/// 상품 목록을 리스트 형태로 표시하는 뷰 (메인)
 struct ProductListView: View {
+    /// 상품 목록 데이터와 비즈니스 로직을 관리하는 ViewModel
     @StateObject private var viewModel = ProductListViewModel()
 
-    
     var body: some View {
         NavigationView {
-            List(viewModel.products) { product in
-                ZStack(alignment: .leading) {
-                    NavigationLink {
-                    } label: {
-                        EmptyView()
-                    }.opacity(0)
-                    VStack(alignment: .leading, spacing: 0) {
-                        AsyncImage(url: product.image) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                        } placeholder: {
-                            Rectangle()
-                                .fill(Color.secondary.opacity(0.2))
-                                .aspectRatio(1, contentMode: .fit)
-                        }
-                        
-                        VStack(alignment: .leading , spacing: 4) {
-                            Text(product.brand)
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.primary)
-                            Text(product.name)
-                                .font(.subheadline)
-                                .fontWeight(.regular)
-                                .foregroundStyle(.primary)
-                                .lineLimit(2)
-                            
-                            HStack(spacing: 4){
-                                if product.hasDiscount {
-                                    Text("\(product.discountRate)%")
-                                        .font(.subheadline)
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(.red)
-                                }
-                                
-                                Text("\(product.discountPrice.formatted())원")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.primary)
-                                
-                                if product.hasDiscount {
-                                    Text("\(product.price.formatted())원")
-                                        .font(.caption)
-                                        .strikethrough()
-                                        .foregroundStyle(.secondary)
-                                }
-                            }
-                        }.padding(10)
-                        Spacer(minLength: 10)
-                    }
-                }
-                .listRowInsets(EdgeInsets())
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.clear)
+            VStack {
+                fullListView
             }
-            .listStyle(.plain) 
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Image("logo_cj_enm") 
                 }
             }
         }
+    }
+   
+    private var fullListView: some View {
+        List(viewModel.products) { product in
+            ProductFullRow(product: product)
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+        }
+        .listStyle(.plain)
     }
 }
 
